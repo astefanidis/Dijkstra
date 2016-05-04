@@ -74,7 +74,7 @@ int * dijkstra(int grid[SIZE][SIZE], int s){
         min_node=min_dist(dist,checked); //node with min distance
         checked[min_node]=true;   // add it to visited nodes
         num_checked++;
-        printf("minNode: %d\n",min_node);
+        //printf("minNode: %d\n",min_node);
 
         for(i=0;i<SIZE;i++){
             if(checked[i]==false && grid[i][min_node]!=0){
@@ -96,11 +96,15 @@ int main()
 {
 
     int weights[SIZE][SIZE]={{0, 5, 6, 8, 0},{5, 0, 0, 0, 1},{6, 0, 0, 15, 0},{8, 0, 15, 0, 20},{0, 1, 0, 20, 0}};
-    int start=4;
-    int *minDistance=dijkstra(weights,start);
-    int i=0;
+    int start;
+    int *minDistance[SIZE];
+    int i,j=0;
     for(i=0;i<SIZE;i++){
-        printf("%d ",*(minDistance+i));
+        minDistance[i]=dijkstra(weights,i);
+        for(j=0;j<SIZE;j++){
+            printf("%d ",*(minDistance[i]+j));
+        }
+        printf("\n");
     }
 
 
